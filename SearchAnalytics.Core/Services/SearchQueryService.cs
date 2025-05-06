@@ -49,7 +49,7 @@ public class SearchQueryService : ISearchQueryService
             Console.WriteLine(match.Url);
         }
         // Save all matches to db
-        _searchResultRepository.AddRangeAsync(matches);
+        await _searchResultRepository.AddRangeAsync(matches);
     }
     
     // Function for getting HTML content of a Google Search

@@ -43,19 +43,21 @@ public class SearchController : ControllerBase
                 TopNResult = request.TopNResult,
                 Date = DateTime.UtcNow
             };
-            
-            int searchId = await _searchRepository.AddAsync(search);
-            
             await _searchQueryService.Search(search);
+            int searchId = await _searchRepository.AddAsync(search);
             var results = await _searchResultRepository.GetBySearchIdAsync(searchId);
-            foreach(SearchResult r in results)
-            {
-                Console.WriteLine(r.Url);
-            }
+
+            
             return Ok(new { 
                 message = "Search added successfully", 
-                searchId = searchId,
-                results = results 
+                 results = results.Select(x => new SearchResultDto(){
+                    Id = x.Id, 
+                    Url = x.Url, 
+                    CreatedAt = x.CreatedAt,
+                    Position = x.Position, 
+                    SearchId = x.SearchId
+                    
+                } ) 
             });
         }
         catch (Exception ex)
