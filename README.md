@@ -9,6 +9,15 @@ SearchAnalytics is a web application designed to help track a website's position
 - Results are limited to the top N results (configurable, default 100)
 - Clean separation of concerns with repository pattern and service-based architecture
 
+## Important Considerations
+
+⚠️ **Rate Limiting Warning**: Google implements rate limiting for consecutive searches. If you make too many searches in a short period (especially with num=100 parameter), Google may temporarily block your IP address for approximately 1 hour, resulting in search errors.
+
+⚠️ **Google Redirects**: When scraping Google search results, the system may encounter multiple redirects (currently set to handle up to 23 redirect attempts). If searches consistently fail:
+- Try reducing the `TopNResult` value (e.g., search for top 50 instead of 100)
+- You can adjust the `maxTryOut` value in the `SearchQueryService.cs` file if needed
+- Wait longer between searches to avoid triggering Google's rate limiting
+
 ## Prerequisites
 
 - .NET 8.0 SDK
@@ -122,15 +131,6 @@ builder.Services.AddCors(options =>
 - If searches consistently fail, wait at least 1 hour before trying again to allow Google's rate limiting to reset
 - Verify that your firewall or antivirus is not blocking the application from making HTTP requests
 - Check the console output for error messages
-
-## Important Considerations
-
-⚠️ **Rate Limiting Warning**: Google implements rate limiting for consecutive searches. If you make too many searches in a short period (especially with num=100 parameter), Google may temporarily block your IP address for approximately 1 hour, resulting in search errors.
-
-⚠️ **Google Redirects**: When scraping Google search results, the system may encounter multiple redirects (currently set to handle up to 23 redirect attempts). If searches consistently fail:
-- Try reducing the `TopNResult` value (e.g., search for top 50 instead of 100)
-- You can adjust the `maxTryOut` value in the `SearchQueryService.cs` file if needed
-- Wait longer between searches to avoid triggering Google's rate limiting
 
 
 ## Potential Improvements
