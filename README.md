@@ -1,4 +1,4 @@
-# SearchAnalytics
+# Search Analytics
 
 SearchAnalytics is a web application designed to help track a website's position in Google search results for specific keywords. The application automatically searches Google for the specified keyword and identifies where your target website appears in the results.
 
