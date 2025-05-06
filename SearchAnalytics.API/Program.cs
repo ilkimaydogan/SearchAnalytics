@@ -1,4 +1,3 @@
-// SearchAnalytics.API/Program.cs
 
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
