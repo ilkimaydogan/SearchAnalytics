@@ -43,8 +43,8 @@ public class SearchController : ControllerBase
                 TopNResult = request.TopNResult,
                 Date = DateTime.UtcNow
             };
-            await _searchQueryService.Search(search);
             int searchId = await _searchRepository.AddAsync(search);
+            await _searchQueryService.Search(search);
             var results = await _searchResultRepository.GetBySearchIdAsync(searchId);
 
             
@@ -87,7 +87,7 @@ public class SearchController : ControllerBase
         }
     }
 
-    [HttpGet("history")]
+    [HttpGet("/search/history")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetSearchHistory()
