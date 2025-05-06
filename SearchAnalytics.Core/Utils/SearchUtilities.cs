@@ -2,20 +2,17 @@ using System.Text.RegularExpressions;
 
 namespace SearchAnalytics.Core.Utils;
 
-public class SearchUtilities
+public static class SearchUtilities
 {
     
-        
     public static string BuildSearchUrl(string keyword, int topNResults)
     {
-        // Replace spaces with '+' for URL
         string encodedKeyword = Uri.EscapeDataString(keyword).Replace("%20", "+");
         
         // Default to Google
         return $"https://www.google.com/search?num={topNResults}&q={encodedKeyword}";
     }
     
-    // Helper method to strip HTML tags from a string
     public static string StripUrlToDomain(string url)
     {
         var domain = new Uri(url).Host;
@@ -32,10 +29,8 @@ public class SearchUtilities
         {
             string href = match.Groups[1].Value;
             
-            // Replace HTML entity &amp; with &
             href = href.Replace("&amp;", "&");
             
-            // If the URL is relative, convert to absolute
             if (href.StartsWith("/"))
             {
                 href = "https://www.google.co.uk" + href;

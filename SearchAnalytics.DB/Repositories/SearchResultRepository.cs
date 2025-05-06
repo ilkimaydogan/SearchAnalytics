@@ -1,4 +1,3 @@
-// SearchAnalytics.DB/Repositories/SearchResultRepository.cs
 using Microsoft.EntityFrameworkCore;
 using SearchAnalytics.Core.Interfaces;
 using SearchAnalytics.Core.Models;

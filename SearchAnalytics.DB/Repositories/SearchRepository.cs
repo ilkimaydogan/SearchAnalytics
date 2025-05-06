@@ -1,5 +1,3 @@
-// SearchAnalytics.DB/Repositories/SearchRepository.cs
-
 using Microsoft.EntityFrameworkCore;
 using SearchAnalytics.Core.Interfaces;
 using SearchAnalytics.Core.Models;
@@ -28,12 +26,5 @@ public class SearchRepository : ISearchRepository
             .Include(s => s.SearchEngine)
             .OrderByDescending(s => s.Date)
             .ToListAsync();
-    }
-    
-    public async Task<Search?> GetLatestSearchAsync()
-    {
-        return await _dbContext.Searches
-            .OrderByDescending(s => s.Date)
-            .FirstOrDefaultAsync();
     }
 }

@@ -46,15 +46,7 @@ public class SearchController : ControllerBase
             
             int searchId = await _searchRepository.AddAsync(search);
             
-            try
-            {
-                await _searchQueryService.Search(search);
-            }
-            catch (Exception searchEx)
-            {
-                Console.WriteLine($"Search error: {searchEx.Message}");
-            }
-            
+            await _searchQueryService.Search(search);
             var results = await _searchResultRepository.GetBySearchIdAsync(searchId);
             foreach(SearchResult r in results)
             {
@@ -68,7 +60,11 @@ public class SearchController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { error = ex.Message });
+            Console.WriteLine($"Search error: {ex.Message}");
+            return Problem(
+                detail: ex.Message,
+                title: "An unexpected error occurred during search", 
+                statusCode: StatusCodes.Status500InternalServerError);
         }
     }
     
@@ -82,7 +78,10 @@ public class SearchController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { error = ex.Message });
+            return Problem(
+                detail: ex.Message,
+                title: "Error retrieving search results", 
+                statusCode: StatusCodes.Status500InternalServerError);
         }
     }
 

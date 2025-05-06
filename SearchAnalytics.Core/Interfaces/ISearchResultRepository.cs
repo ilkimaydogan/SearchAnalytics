@@ -1,4 +1,3 @@
-// SearchAnalytics.DB/Interfaces/ISearchResultRepository.cs
 using SearchAnalytics.Core.Models;
 
 namespace SearchAnalytics.Core.Interfaces;

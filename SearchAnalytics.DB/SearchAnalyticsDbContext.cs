@@ -1,4 +1,3 @@
-// SearchAnalytics.DB/SearchAnalyticsDbContext.cs
 using Microsoft.EntityFrameworkCore;
 using SearchAnalytics.Core.Models;
 
