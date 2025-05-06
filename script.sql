@@ -1,4 +1,8 @@
 
+-- Create database
+CREATE DATABASE SearchAnalyticsDB;
+GO
+
 -- Use the SearchAnalytics database
 USE SearchAnalyticsDB;
 GO
@@ -35,6 +39,15 @@ CREATE TABLE SearchResults (
 );
 GO
 
+-- Insert initial data for SearchEngines
+INSERT INTO SearchEngines (Name, Pattern, IsActive)
+VALUES 
+(
+    'Google', 
+    '<a\s+jsname="UWckNb"\s+class="zReHs"\s+href="(?<hrefContent>[^"]+)"\s+[^>]*>.*?<h3\s+class="LC20lb[^"]*"[^>]*>(.*?)</h3>', 
+    1
+);
+GO
 
 -- Create indexes for better performance
 CREATE INDEX IX_Searches_SearchEngineId ON Searches(SearchEngineId);
@@ -43,3 +56,4 @@ CREATE INDEX IX_Searches_Keyword ON Searches(Keyword);
 CREATE INDEX IX_SearchResults_SearchId ON SearchResults(SearchId);
 CREATE INDEX IX_SearchResults_Position ON SearchResults(Position);
 GO
+
