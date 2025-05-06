@@ -1,4 +1,3 @@
-// SearchAnalytics.Core/DTOs/SearchEngineDto.cs
 namespace SearchAnalytics.Core.DTOs;
 
 public class SearchEngineDto
