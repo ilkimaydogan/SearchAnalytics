@@ -1,5 +1,3 @@
-﻿// SearchAnalytics.API/Controllers/SearchController.cs
-
 using Microsoft.AspNetCore.Mvc;
 using SearchAnalytics.Core.DTOs;
 using SearchAnalytics.Core.Interfaces;
